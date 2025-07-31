@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mercado Lider - Produtos Frescos e Qualidade</title>
+    <link rel="stylesheet" href="style.css">
+    <meta name="description" content="Mercado Lider em Paranaguá/PR. Produtos frescos, açougue de qualidade, padaria e mais. Seu mercadinho local.">
+</head>
+<body>
+
+<header>
+    <div id="top"></div>
+    <h1>Mercado Lider</h1>
+    <p>Seu ponto de encontro para produtos frescos e atendimento de qualidade!</p>
+    <div id="status-loja"></div> 
+    <nav>
+        <ul>
+            <li><a href="#sobre">Sobre Nós</a></li>
+            <li><a href="#produtos">Produtos</a></li>
+            <li><a href="#contato">Contato</a></li>
+            </ul>
+    </nav>
+</header>
+
+    <main>
+        <section id="sobre">
+            <h2>Sobre Nós</h2>
+            <p>Há 14 anos, o Mercado Lider tem sido um pilar na comunidade, oferecendo uma variedade de produtos frescos, de alta qualidade e com preços justos. Nossa missão é trazer o melhor da feira e do açougue para sua mesa, com a conveniência que você merece.</p>
+        </section>
+
+        <section id="produtos">
+            <h2>Nossos Produtos</h2>
+<div class="galeria-produtos">
+                <div class="produto-item">
+                    <img src="img/verduras.png"alt="Verduras Frescas">
+                    <h3>Hortifruti Fresquinho</h3>
+                    <p>Frutas, verduras e legumes selecionados, direto do campo para sua mesa. Qualidade garantida!</p>
+                </div>
+
+                <div class="produto-item">
+                    <img src="img/açougue.png" alt="Carnes Frescas">
+                    <h3>Açougue de Qualidade</h3>
+                    <p>Variedade de carnes para o seu churrasco ou refeição do dia a dia. Cortes especiais e frescos.</p>
+                </div>
+
+                <div class="produto-item">
+                    <img src="img/pães.png" alt="Pães Frescos">
+                    <h3>Padaria Artesanal</h3>
+                    <p>Pão quentinho, bolos e doces feitos na hora para o seu café da manhã ou lanche.</p>
+                </div>
+
+                <div class="produto-item">
+                    <img src="img/laticínios.png" alt="Leite, Queijo e Frios">
+                    <h3>Laticínios e Frios</h3>
+                    <p>Leite, queijos, iogurtes e frios variados. Tudo fresco e das melhores marcas.</p>
+                </div>
+
+                <div class="produto-item">
+                    <img src="img/massas.png" alt="Produtos de Mercearia">
+                    <h3>Mercearia Completa</h3>
+                    <p>Arroz, feijão, massas, enlatados e tudo o que você precisa para a sua despensa.</p>
+                </div>
+
+                <div class="produto-item">
+                    <img src="img/limpeza.png" alt="Produtos de Limpeza">
+                    <h3>Produtos de Limpeza</h3>
+                    <p>Tudo para deixar sua casa brilhando! De detergentes a desinfetantes.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="contato">
+            <h2>Fale Conosco</h2>
+            <p>Estamos localizados na Rua Nelson Pereira Neves, 203 - Vila dos Comerciários Paranaguá/PR</p>
+        <div class="mapa-container">
+            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d449.88060718958576!2d-48.568197763626365!3d-25.570174333823818!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x94db8f85ee5d990d%3A0x57e71e31bf88ffb4!2sMercado%20L%C3%ADder!5e0!3m2!1spt-BR!2sbr!4v1753970564487!5m2!1spt-BR!2sbr" width="900" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+        </div>
+        <form class="contato-form" action="https://formspree.io/f/meozzrwk" method="POST">
+            <input type="hidden" name="_language" value="pt-BR">
+    <label for="nome">Nome:</label>
+    <input type="text" id="nome" name="nome" placeholder="Seu nome completo" required maxlength="50">
+
+    <label for="email">E-mail:</label>
+    <input type="email" id="email" name="email" placeholder="seuemail@exemplo.com" required maxlength="70">
+
+    <label for="mensagem">Mensagem:</label>
+    <textarea id="mensagem" name="mensagem" rows="5" placeholder="Digite sua mensagem aqui..." required maxlength="500"></textarea>
+
+    <button type="submit">Enviar Mensagem</button>
+    </form>
+            <p>Telefone: (41) 3427-2708</p>
+            </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2025 Mercado Lider. Todos os direitos reservados.</p>
+    </footer>
+    <script src="script.js"></script>
+<a href="#top" id="btnVoltarAoTopo" title="Voltar ao topo">&#8593;</a>
+</body>
+</html>
