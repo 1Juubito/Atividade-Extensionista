@@ -30,7 +30,8 @@ function verificarHorarioFuncionamento() {
 
     if (estaAberto) {
         statusLoja.textContent = 'Aberto agora!';
-        statusLoja.style.backgroundColor = '#4CAF50';
+        statusLoja.classList.add('aberto');
+        statusLoja.classList.remove('fechado');
     } else {
         let proximaAbertura = 'Fechado hoje.';
         const diaHoje = horarios[diasDaSemana[diaDaSemana]];
@@ -38,27 +39,24 @@ function verificarHorarioFuncionamento() {
         if (diaHoje) {
              const proximoIntervalo = diaHoje.find(intervalo => horaAtual < intervalo.abre);
              if (proximoIntervalo) {
-                 proximaAbertura = `Fechado. Abre às ${proximoIntervalo.abre}h.`;
+                 const hora = Math.floor(proximoIntervalo.abre);
+                 const minutos = (proximoIntervalo.abre - hora) * 60;
+                 const minutosFormatados = minutos > 0 ? `h${minutos}min` : `h`;
+                 proximaAbertura = `Fechado. Abre às ${hora}${minutosFormatados}.`;
              }
         }
         
         statusLoja.textContent = proximaAbertura;
-        statusLoja.style.backgroundColor = '#f44336';
+        statusLoja.classList.add('fechado');
+        statusLoja.classList.remove('aberto');
     }
-
-    statusLoja.style.color = 'white';
-    statusLoja.style.padding = '8px 15px';
-    statusLoja.style.borderRadius = '5px';
-    statusLoja.style.marginTop = '15px';
-    statusLoja.style.display = 'inline-block';
-    statusLoja.style.fontWeight = 'bold';
 }
 
 document.addEventListener('DOMContentLoaded', () => {
     verificarHorarioFuncionamento();
     const btnVoltarAoTopo = document.getElementById('btnVoltarAoTopo');
     window.onscroll = function() {
-        if (document.body.scrollTop > 2000 || document.documentElement.scrollTop > 2000) {
+        if (document.body.scrollTop > 200 || document.documentElement.scrollTop > 200) {
             btnVoltarAoTopo.style.display = "block";
         } else {
             btnVoltarAoTopo.style.display = "none";
