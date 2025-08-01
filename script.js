@@ -56,7 +56,7 @@ document.addEventListener('DOMContentLoaded', () => {
     verificarHorarioFuncionamento();
     const btnVoltarAoTopo = document.getElementById('btnVoltarAoTopo');
     window.onscroll = function() {
-        if (document.body.scrollTop > 200 || document.documentElement.scrollTop > 200) {
+        if (document.body.scrollTop > 3000 || document.documentElement.scrollTop > 3000) {
             btnVoltarAoTopo.style.display = "block";
         } else {
             btnVoltarAoTopo.style.display = "none";
