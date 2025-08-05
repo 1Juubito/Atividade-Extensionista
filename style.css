@@ -23,7 +23,20 @@ body {
 }
 
 header {
-    background-color: var(--cor-principal);
+    background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
+                      url('img/Background1.jpg'),
+                      url('img/Background2.jpg'),
+                      url('img/Background3.jpg'),
+                      url('img/Background4.jpg'),
+                      url('img/Background5.jpg'),
+                      url('img/Background6.jpg'),
+                      url('img/Background7.jpg'),
+                      url('img/Background8.jpg'),
+                      url('img/Background9.jpg');
+    background-position: center;
+    background-size: cover;
+    animation: slideshow 30s infinite;
+    
     color: var(--cor-texto-claro);
     padding: 40px 0;
     text-align: center;
@@ -33,7 +46,6 @@ header {
     align-items: center;
     justify-content: center;
 }
-
 header h1 {
     font-family: 'Nata Sans', sans-serif;
     margin: 0;
@@ -301,4 +313,16 @@ footer {
     #contato p {
         font-size: 1em;
     }
+}
+
+@keyframes slideshow {
+    0% { background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('img/Background1.jpg');}
+    10% { background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('img/Background2.jpg');}
+    20% { background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('img/Background3.jpg');}
+    40% { background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('img/Background5.jpg');}
+    50% { background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('img/Background6.jpg');}
+    60% { background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('img/Background7.jpg');}
+    70% { background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('img/Background8.jpg');}
+    80% { background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('img/Background9.jpg');}
+    100% { background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('img/Background1.jpg');}
 }
