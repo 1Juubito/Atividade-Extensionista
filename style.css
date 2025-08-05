@@ -319,3 +319,37 @@ footer {
   88% { background-image: url('img/Background9.jpg'); }
   100% { background-image: url('img/Background1.jpg'); }
 }
+
+#dicas {
+    background-color: var(--cor-fundo-claro);
+    padding: 40px;
+    border-radius: 8px;
+    max-width: 900px;
+    margin: 20px auto;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.dicas-container {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
+
+.dica {
+    background-color: #fff;
+    padding: 25px;
+    border-left: 6px solid var(--cor-principal);
+    border-radius: 8px;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.1);
+}
+
+.dica h3 {
+    color: var(--cor-principal);
+    margin-top: 0;
+}
+
+.dica p {
+    font-size: 1em;
+    color: #555;
+}
+
