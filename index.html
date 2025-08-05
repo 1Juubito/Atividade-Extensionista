@@ -11,7 +11,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Nata+Sans:wght@100..900&family=Oswald:wght@200..700&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap" rel="stylesheet">
     <link rel="icon" type="image/png" href="img/favicon.png">
-    <meta name="description" content="Mercado Lider em Paranaguá/PR. Produtos frescos, açougue de qualidade, padaria e mais. Seu mercadinho local.">
+    <meta name="description" content="Mercado Líder em Paranaguá/PR. Produtos frescos, açougue de qualidade, padaria e mais. Seu mercadinho local.">
 </head>
 <body>
 
@@ -21,6 +21,14 @@
     <p>Seu ponto de encontro para produtos frescos e atendimento de qualidade!</p>
     <div id="status-loja"></div>
     <nav>
+        <div class="toggle-tema">
+  <input type="checkbox" id="modoEscuroToggle">
+  <label for="modoEscuroToggle" class="switch">
+    <span class="sol">&#9728;</span>
+    <span class="lua">&#9790;</span>
+  </label>
+</div>
+
         <ul>
             <li><a href="#sobre">Sobre Nós</a></li>
             <li><a href="#produtos">Produtos</a></li>
@@ -31,12 +39,12 @@
 </header>
 
     <main>
-        <section id="sobre">
+        <section id="sobre" class="animar-scroll">
             <h2>Sobre Nós</h2>
             <p>Há 14 anos, o Mercado Líder tem sido um pilar na comunidade, oferecendo uma variedade de produtos frescos, de alta qualidade e com preços justos. Nossa missão é trazer o melhor da feira e do açougue para sua mesa, com a conveniência que você merece.</p>
         </section>
 
-        <section id="produtos">
+        <section id="produtos" class="animar-scroll">
             <h2>Nossos Produtos</h2>
 <div class="galeria-produtos">
                 <div class="produto-item">
@@ -76,7 +84,7 @@
                 </div>
             </div>
         </section>
-        <section id="depoimentos">
+        <section id="depoimentos" class="animar-scroll">
     <h2>O que nossos clientes dizem</h2>
     <div class="depoimento-container">
         <div class="depoimento-item">
@@ -97,7 +105,7 @@
         </div>
     </div>
 </section>
-<section id="dicas">
+<section id="dicas" class="animar-scroll">
     <h2>Dicas e Receitas</h2>
     <div class="dicas-container">
         <article class="dica">
@@ -115,7 +123,7 @@
     </div>
 </section>
 
-<section id="contato">
+<section id="contato" class="animar-scroll">
     <h2>Fale Conosco</h2>
     
     <p>Estamos localizados na Rua Nelson Pereira Neves, 203 - Vila dos Comerciários Paranaguá/PR</p>
@@ -148,8 +156,8 @@
         </form>
         
         <div class="contato-details">
-            <p><i class="fas fa-phone-alt"></i> Telefone: (41) 3427-2708</p>
-            <p><i class="fab fa-whatsapp"></i> WhatsApp: <a href="https://wa.me/554134272708" target="_blank" rel="noopener">(41) 3427-2708</a></p>
+            <p><i class="fas fa-phone-alt"></i> Telefone: <span class="contato-numero">(41) 3427-2708</span></p>
+            <p><i class="fab fa-whatsapp"></i> WhatsApp: <a href="https://wa.me/554134272708" target="_blank" rel="noopener"><span class="contato-numero">(41) 3427-2708</span></a></p>
         </div>
     </div>
 </section>

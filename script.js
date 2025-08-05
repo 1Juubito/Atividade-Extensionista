@@ -63,3 +63,36 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     };
 });
+
+function animarAoScroll() {
+    const elementos = document.querySelectorAll('.animar-scroll');
+    const alturaTela = window.innerHeight * 0.85;
+
+    elementos.forEach(el => {
+        const topoElemento = el.getBoundingClientRect().top;
+        if (topoElemento < alturaTela) {
+            el.classList.add('ativo');
+        }
+    });
+}
+
+window.addEventListener('scroll', animarAoScroll);
+window.addEventListener('load', animarAoScroll);
+
+const toggle = document.getElementById('modoEscuroToggle');
+const body = document.body;
+
+if (localStorage.getItem('modoEscuro') === 'ativado') {
+    body.classList.add('tema-escuro');
+    toggle.checked = true;
+}
+
+toggle.addEventListener('change', () => {
+    body.classList.toggle('tema-escuro');
+    
+    if (body.classList.contains('tema-escuro')) {
+        localStorage.setItem('modoEscuro', 'ativado');
+    } else {
+        localStorage.setItem('modoEscuro', 'desativado');
+    }
+});
