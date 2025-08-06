@@ -53,6 +53,21 @@ function verificarHorarioFuncionamento() {
 }
 
 document.addEventListener('DOMContentLoaded', () => {
+const imagensFundo = [
+    'img/Background1.jpg',
+    'img/Background2.jpg',
+    'img/Background3.jpg',
+    'img/Background4.jpg',
+    'img/Background5.jpg',
+    'img/Background6.jpg',
+    'img/Background7.jpg',
+    'img/Background8.jpg',
+    'img/Background9.jpg',
+];
+
+imagensFundo.forEach(url => {
+    new Image().src = url;
+});
     verificarHorarioFuncionamento();
     const btnVoltarAoTopo = document.getElementById('btnVoltarAoTopo');
     window.onscroll = function() {
