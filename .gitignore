@@ -1,0 +1,7 @@
+# .gitignore
+
+# Ignorar o arquivo de configuração com chaves de API
+config.js
+
+# Opcional: Ignorar pastas de dependências do Node.js
+node_modules/
