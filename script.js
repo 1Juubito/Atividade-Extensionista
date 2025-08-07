@@ -189,3 +189,10 @@ toggleBtn.addEventListener('click', () => {
     chatbotDiv.style.display = isOpen ? 'flex' : 'none';
     toggleBtn.textContent = isOpen ? '❌' : '💬';
 });
+
+window.addEventListener('load', () => {
+    const formulario = document.querySelector('.contato-form');
+    if (formulario) {
+        formulario.reset();
+    }
+});
