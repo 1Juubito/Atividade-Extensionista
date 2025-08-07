@@ -55,15 +55,11 @@ function verificarHorarioFuncionamento() {
 document.addEventListener('DOMContentLoaded', () => {
     const header = document.querySelector('header');
     const imagensFundo = [
-        'img/Background1.jpg',
-        'img/Background2.jpg',
-        'img/Background3.jpg',
-        'img/Background4.jpg',
-        'img/Background5.jpg',
-        'img/Background6.jpg',
-        'img/Background7.jpg',
-        'img/Background8.jpg',
-        'img/Background9.jpg',
+        'img/Background1.webp',
+        'img/Background2.webp',
+        'img/Background3.webp',
+        'img/Background4.webp',
+        'img/Background5.webp',
     ];
 
     let imagensCarregadas = 0;
@@ -81,14 +77,6 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     verificarHorarioFuncionamento();
-    const btnVoltarAoTopo = document.getElementById('btnVoltarAoTopo');
-    window.onscroll = function() {
-        if (document.body.scrollTop > 3500 || document.documentElement.scrollTop > 3500) {
-            btnVoltarAoTopo.style.display = "block";
-        } else {
-            btnVoltarAoTopo.style.display = "none";
-        }
-    };
 });
 
 function animarAoScroll() {

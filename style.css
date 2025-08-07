@@ -296,35 +296,6 @@ footer {
     font-size: 0.9em;
 }
 
-#btnVoltarAoTopo {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 60px;
-    height: 60px;
-    
-    position: fixed;
-    bottom: 80px;
-    right: 20px;
-    z-index: 99;
-    border: none;
-    outline: none;
-    background-color: var(--cor-principal);
-    color: white;
-    cursor: pointer;
-    border-radius: 50%;
-    font-size: 20px;
-    text-align: center;
-    text-decoration: none;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
-    transition: opacity 0.3s ease;
-    opacity: 0.7;
-}
-
-#btnVoltarAoTopo:hover {
-    opacity: 1;
-}
-
 #status-loja {
     display: inline-block;
     margin-top: 15px;
@@ -382,16 +353,12 @@ footer {
 }
 
 @keyframes slideshow {
-  0% { background-image: url('img/Background1.jpg'); }
-  11% { background-image: url('img/Background2.jpg'); }
-  22% { background-image: url('img/Background3.jpg'); }
-  33% { background-image: url('img/Background4.jpg'); }
-  44% { background-image: url('img/Background5.jpg'); }
-  55% { background-image: url('img/Background6.jpg'); }
-  66% { background-image: url('img/Background7.jpg'); }
-  77% { background-image: url('img/Background8.jpg'); }
-  88% { background-image: url('img/Background9.jpg'); }
-  100% { background-image: url('img/Background1.jpg'); }
+  0% { background-image: url('img/Background1.webp'); }
+  20% { background-image: url('img/Background2.webp'); }
+  40% { background-image: url('img/Background3.webp'); }
+  60% { background-image: url('img/Background4.webp'); }
+  80% { background-image: url('img/Background5.webp'); }
+  100% { background-image: url('img/Background1.webp'); }
 }
 
 #dicas {
@@ -471,23 +438,20 @@ body.tema-escuro section#dicas {
   color: #e0e0e0;
 }
 
-body {
-  font-family: Arial, sans-serif;
-}
-
 #chatbot {
+  display: none;
   position: fixed;
-  bottom: 20px;
+  bottom: 80px;
   right: 20px;
   width: 300px;
   height: 400px;
-  background: #fff;
-  border: 1px solid #ccc;
+  background: white;
   border-radius: 10px;
-  display: flex;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
+  padding: 10px;
+  z-index: 9999;
   flex-direction: column;
   overflow: hidden;
-  box-shadow: 0 0 10px rgba(0,0,0,0.2);
 }
 
 #chat-header {
@@ -536,20 +500,6 @@ body {
   border: none;
   padding: 10px 15px;
   cursor: pointer;
-}
-
-#chatbot {
-  display: none;
-  position: fixed;
-  bottom: 80px;
-  right: 20px;
-  width: 300px;
-  height: 400px;
-  background: white;
-  border-radius: 10px;
-  box-shadow: 0 0 15px rgba(0,0,0,0.3);
-  padding: 10px;
-  z-index: 9999;
 }
 
 #chat-toggle {
