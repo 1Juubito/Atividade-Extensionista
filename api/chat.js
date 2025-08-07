@@ -5,7 +5,6 @@ export default async function handler(request, response) {
     if (!userMessage) {
         return response.status(400).json({ error: 'Nenhuma mensagem do usuário foi fornecida.' });
     }
-
     if (!GEMINI_API_KEY) {
         return response.status(500).json({ error: 'A chave de API não está configurada no servidor.' });
     }
