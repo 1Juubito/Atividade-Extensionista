@@ -195,3 +195,11 @@ window.addEventListener('pageshow', (event) => {
         formulario.reset();
     }
 });
+
+document.addEventListener("visibilitychange", (event) => {
+    if (document.visibilityState === "visible") {
+        document.title = "Seja bem vindo 😀";
+    } else {
+        document.title = "Hey, volte aqui ☹️";
+    }
+});
