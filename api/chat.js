@@ -1,3 +1,24 @@
+async function callGeminiWithRetry(url, payload, maxRetries = 5) {
+    let attempt = 0;
+    while (attempt < maxRetries) {
+        const geminiResponse = await fetch(url, payload);
+        if (geminiResponse.ok) {
+            return geminiResponse.json();
+        }
+
+        if (geminiResponse.status === 429 && attempt < maxRetries - 1) {
+            attempt++;
+            const delay = Math.pow(2, attempt) * 200 + Math.random() * 200;
+            console.warn(`Rate limit da API do Gemini atingido. Tentando novamente em ${delay.toFixed(0)}ms... (Tentativa ${attempt})`);
+            await new Promise(resolve => setTimeout(resolve, delay));
+        } else {
+            const errorBody = await geminiResponse.text();
+            throw new Error(`Erro na API do Gemini: Status ${geminiResponse.status}. Resposta: ${errorBody}`);
+        }
+    }
+    throw new Error("Falha ao se comunicar com a API do Gemini após múltiplas tentativas.");
+}
+
 export default async function handler(request, response) {
     const GEMINI_API_KEY = process.env.GEMINI_API_KEY;
     const { userMessage } = request.body;
@@ -19,24 +40,28 @@ export default async function handler(request, response) {
         Pergunta do usuário: "${userMessage}"
     `;
 
-    try {
-        const geminiResponse = await fetch(API_URL, {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ contents: [{ parts: [{ text: prompt }] }] })
-        });
+    const fetchOptions = {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ contents: [{ parts: [{ text: prompt }] }] })
+    };
 
-        if (!geminiResponse.ok) {
-            throw new Error(`Erro na API do Gemini: ${geminiResponse.statusText}`);
+    try {
+        const data = await callGeminiWithRetry(API_URL, fetchOptions);
+
+        if (!data.candidates || data.candidates.length === 0 || !data.candidates[0].content) {
+            throw new Error('Resposta da API do Gemini em formato inesperado.');
         }
 
-        const data = await geminiResponse.json();
         const botText = data.candidates[0].content.parts[0].text;
         
-        response.status(200).json({ reply: botText });
+        return response.status(200).json({ reply: botText });
 
     } catch (error) {
-        console.error("Erro na função serverless:", error);
-        response.status(500).json({ error: 'Falha ao contatar a IA.' });
+        console.error("Erro na função serverless:", error.message);
+        if (error.message.includes("429")) {
+             return response.status(429).json({ error: 'Serviço sobrecarregado. Tente novamente em alguns instantes.' });
+        }
+        return response.status(500).json({ error: 'Falha ao contatar a IA.' });
     }
 }
