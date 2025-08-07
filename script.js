@@ -112,8 +112,6 @@ toggle.addEventListener('change', () => {
     }
 });
 
-const GEMINI_API_KEY = "AIzaSyCxzeO_5fdnd14vGlhVEDzwKvcwiyF1Zk8";
-
 const faq = {
   "horario": [
     "qual o horario de funcionamento", "horario de funcionamento", "funcionamento", "horario", "abrem que horas", "horario de atendimento", "estao abertos agora", "que horas abre"
@@ -153,7 +151,7 @@ function addMessage(text, sender) {
 }
 
 async function getAiResponse(userMessage) {
-    if (!GEMINI_API_KEY || GEMINI_API_KEY === "COLE_SUA_CHAVE_DE_API_DO_GEMINI_AQUI") {
+    if (!GEMINI_API_KEY || GEMINI_API_KEY === "") {
         return "A integração com a IA parece estar desativada. Configure a chave de API.";
     }
 
