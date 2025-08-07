@@ -190,7 +190,7 @@ toggleBtn.addEventListener('click', () => {
     toggleBtn.textContent = isOpen ? '❌' : '💬';
 });
 
-window.addEventListener('load', () => {
+window.addEventListener('pageshow', (event) => {
     const formulario = document.querySelector('.contato-form');
     if (formulario) {
         formulario.reset();
