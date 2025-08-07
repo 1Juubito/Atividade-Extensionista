@@ -140,6 +140,7 @@ const faq = {
     "tem entrega",
     "entrega em casa",
     "delivery",
+    "entrega",
     "fazem delivery",
     "entregam na regiao"
   ],
