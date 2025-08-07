@@ -131,11 +131,11 @@ const faq = {
 };
 
 const respostas = {
-  "horario": "Nosso horário de funcionamento é das 8h às 18h, de segunda a sábado.",
-  "entrega": "Sim, fazemos entregas na região! Entre em contato pelo WhatsApp para saber mais.",
+  "horario": "Nosso horário de funcionamento é segunda a sábado 8h às 13h, voltamos 14:30h até 19h e no domingo 9h às 13h.",
+  "entrega": "Infelizmente não fazemos entrega.",
   "pagamento": "Aceitamos dinheiro, cartão de crédito/débito e Pix.",
-  "localizacao": "Estamos localizados no bairro Cominese, em Paranaguá!",
-  "estacionamento": "Sim, temos estacionamento gratuito para clientes."
+  "localizacao": "Estamos localizados no bairro Cominese, Rua Nelson Pereira Neves, 203 em Paranaguá.",
+  "estacionamento": "Infelizmente não temos estacionamento."
 };
 
 const messages = document.getElementById('chat-messages');
