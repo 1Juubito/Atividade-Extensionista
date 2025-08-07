@@ -216,6 +216,6 @@ let isOpen = false;
 
 toggleBtn.addEventListener('click', () => {
   isOpen = !isOpen;
-  chatbotDiv.style.display = isOpen ? 'block' : 'none';
+  chatbotDiv.style.display = isOpen ? 'flex' : 'none';
   toggleBtn.textContent = isOpen ? '❌' : '💬';
 });
