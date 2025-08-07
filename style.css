@@ -93,7 +93,6 @@ header {
   background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('img/Background1.jpg');
   background-position: center;
   background-size: cover;
-  animation: slideshow 30s infinite;
     
     color: var(--cor-texto-claro);
     padding: 40px 0;
@@ -104,6 +103,10 @@ header {
     align-items: center;
     justify-content: center;
 }
+header.animacao-pronta {
+  animation: slideshow 30s infinite;
+}
+
 header h1 {
     font-family: 'Nata Sans', sans-serif;
     margin: 0;
@@ -294,9 +297,14 @@ footer {
 }
 
 #btnVoltarAoTopo {
-    display: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 60px;
+    height: 60px;
+    
     position: fixed;
-    bottom: 20px;
+    bottom: 80px;
     right: 20px;
     z-index: 99;
     border: none;
@@ -304,7 +312,6 @@ footer {
     background-color: var(--cor-principal);
     color: white;
     cursor: pointer;
-    padding: 15px;
     border-radius: 50%;
     font-size: 20px;
     text-align: center;
@@ -464,3 +471,111 @@ body.tema-escuro section#dicas {
   color: #e0e0e0;
 }
 
+body {
+  font-family: Arial, sans-serif;
+}
+
+#chatbot {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  width: 300px;
+  height: 400px;
+  background: #fff;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  box-shadow: 0 0 10px rgba(0,0,0,0.2);
+}
+
+#chat-header {
+  background: #28a745;
+  color: white;
+  padding: 10px;
+  text-align: center;
+  font-weight: bold;
+}
+
+#chat-messages {
+  flex: 1;
+  padding: 10px;
+  overflow-y: auto;
+}
+
+.message {
+  margin-bottom: 10px;
+}
+
+.user {
+  text-align: right;
+  color: blue;
+}
+
+.bot {
+  text-align: left;
+  color: green;
+}
+
+#chat-input {
+  display: flex;
+  border-top: 1px solid #ccc;
+}
+
+#user-input {
+  flex: 1;
+  border: none;
+  padding: 10px;
+  font-size: 14px;
+}
+
+#send-btn {
+  background: #28a745;
+  color: white;
+  border: none;
+  padding: 10px 15px;
+  cursor: pointer;
+}
+
+#chatbot {
+  display: none;
+  position: fixed;
+  bottom: 80px;
+  right: 20px;
+  width: 300px;
+  height: 400px;
+  background: white;
+  border-radius: 10px;
+  box-shadow: 0 0 15px rgba(0,0,0,0.3);
+  padding: 10px;
+  z-index: 9999;
+}
+
+#chat-toggle {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background-color: #28a745;
+  color: white;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  font-size: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  box-shadow: 0 0 10px rgba(0,0,0,0.3);
+  z-index: 10000;
+  transition: background 0.3s;
+}
+
+#chat-toggle:hover {
+  background-color: #218838;
+}
+
+body.carregando header {
+  background-color: #f4f4f4;
+  background-image: none !important;
+}

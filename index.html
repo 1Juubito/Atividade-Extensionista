@@ -4,6 +4,15 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mercado Líder - Produtos Frescos e Qualidade</title>
+    <link rel="preload" href="img/Background1.jpg" as="image">
+    <link rel="preload" href="img/Background2.jpg" as="image">
+    <link rel="preload" href="img/Background3.jpg" as="image">
+    <link rel="preload" href="img/Background4.jpg" as="image">
+    <link rel="preload" href="img/Background5.jpg" as="image">
+    <link rel="preload" href="img/Background6.jpg" as="image">
+    <link rel="preload" href="img/Background7.jpg" as="image">
+    <link rel="preload" href="img/Background8.jpg" as="image">
+    <link rel="preload" href="img/Background9.jpg" as="image">
     <meta name="theme-color" content="#3d9fff">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
     <link rel="stylesheet" href="style.css">
@@ -15,6 +24,17 @@
     <meta name="description" content="Mercado Líder em Paranaguá/PR. Produtos frescos, açougue de qualidade, padaria e mais. Seu mercadinho local.">
 </head>
 <body>
+
+<div id="chatbot">
+  <div id="chat-header">Atendente Virtual</div>
+  <div id="chat-messages"></div>
+  <div id="chat-input">
+    <input type="text" id="user-input" placeholder="Digite sua dúvida..." />
+    <button id="send-btn">Enviar</button>
+  </div>
+</div>
+
+
 
 <header>
     <div id="top"></div>
@@ -168,5 +188,6 @@
     </footer>
     <script src="script.js" defer></script>
 <a href="#top" id="btnVoltarAoTopo" title="Voltar ao topo">&#8593;</a>
+<div id="chat-toggle">💬</div>
 </body>
 </html>

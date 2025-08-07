@@ -53,21 +53,33 @@ function verificarHorarioFuncionamento() {
 }
 
 document.addEventListener('DOMContentLoaded', () => {
-const imagensFundo = [
-    'img/Background1.jpg',
-    'img/Background2.jpg',
-    'img/Background3.jpg',
-    'img/Background4.jpg',
-    'img/Background5.jpg',
-    'img/Background6.jpg',
-    'img/Background7.jpg',
-    'img/Background8.jpg',
-    'img/Background9.jpg',
-];
+    const header = document.querySelector('header');
+    const imagensFundo = [
+        'img/Background1.jpg',
+        'img/Background2.jpg',
+        'img/Background3.jpg',
+        'img/Background4.jpg',
+        'img/Background5.jpg',
+        'img/Background6.jpg',
+        'img/Background7.jpg',
+        'img/Background8.jpg',
+        'img/Background9.jpg',
+    ];
 
-imagensFundo.forEach(url => {
-    new Image().src = url;
-});
+    let imagensCarregadas = 0;
+    const totalImagens = imagensFundo.length;
+
+    imagensFundo.forEach(url => {
+        const img = new Image();
+        img.onload = () => {
+            imagensCarregadas++;
+            if (imagensCarregadas === totalImagens) {
+                header.classList.add('animacao-pronta');
+            }
+        };
+        img.src = url;
+    });
+
     verificarHorarioFuncionamento();
     const btnVoltarAoTopo = document.getElementById('btnVoltarAoTopo');
     window.onscroll = function() {
@@ -110,4 +122,111 @@ toggle.addEventListener('change', () => {
     } else {
         localStorage.setItem('modoEscuro', 'desativado');
     }
+});
+
+const faq = {
+  "horario": [
+    "qual o horario de funcionamento",
+    "horario de funcionamento",
+    "funcionamento",
+    "horario",
+    "abrem que horas",
+    "horario de atendimento",
+    "estao abertos agora",
+    "que horas abre"
+  ],
+  "entrega": [
+    "voces fazem entrega",
+    "tem entrega",
+    "entrega em casa",
+    "delivery",
+    "fazem delivery",
+    "entregam na regiao"
+  ],
+  "pagamento": [
+    "formas de pagamento",
+    "como posso pagar",
+    "aceitam cartao",
+    "aceitam pix",
+    "pagamento",
+    "quais as formas de pagamento"
+  ],
+  "localizacao": [
+    "onde estao localizados",
+    "endereco",
+    "onde fica a loja",
+    "localizacao",
+    "estao em qual bairro"
+  ],
+  "estacionamento": [
+    "tem estacionamento",
+    "estacionamento",
+    "estacionamento para clientes",
+    "onde posso estacionar"
+  ]
+};
+
+const respostas = {
+  "horario": "Nosso horário de funcionamento é das 8h às 18h, de segunda a sábado.",
+  "entrega": "Sim, fazemos entregas na região! Entre em contato pelo WhatsApp para saber mais.",
+  "pagamento": "Aceitamos dinheiro, cartão de crédito/débito e Pix.",
+  "localizacao": "Estamos localizados no bairro Cominese, em Paranaguá!",
+  "estacionamento": "Sim, temos estacionamento gratuito para clientes."
+};
+
+const messages = document.getElementById('chat-messages');
+const input = document.getElementById('user-input');
+const button = document.getElementById('send-btn');
+
+function addMessage(text, sender) {
+  const msg = document.createElement('div');
+  msg.classList.add('message', sender);
+  msg.textContent = text;
+  messages.appendChild(msg);
+  messages.scrollTop = messages.scrollHeight;
+}
+
+function botResponse(userText) {
+  const cleanedUserText = userText
+    .toLowerCase()
+    .normalize("NFD")
+    .replace(/[\u0300-\u036f]/g, "")
+    .trim();
+
+  let response = "Desculpe, não entendi sua pergunta. 😕";
+  for (const key in faq) {
+    for (const synonym of faq[key]) {
+      if (cleanedUserText.includes(synonym)) {
+        response = respostas[key];
+        break;
+      }
+    }
+    if (response !== "Desculpe, não entendi sua pergunta. 😕") {
+      break;
+    }
+  }
+
+  setTimeout(() => addMessage(response, 'bot'), 500);
+}
+
+button.addEventListener('click', () => {
+  const text = input.value.trim();
+  if (!text) return;
+  addMessage(text, 'user');
+  botResponse(text);
+  input.value = '';
+});
+
+input.addEventListener('keypress', (e) => {
+  if (e.key === 'Enter') button.click();
+});
+
+const toggleBtn = document.getElementById('chat-toggle');
+const chatbotDiv = document.getElementById('chatbot');
+let isOpen = false;
+
+toggleBtn.addEventListener('click', () => {
+  isOpen = !isOpen;
+  chatbotDiv.style.display = isOpen ? 'block' : 'none';
+  toggleBtn.textContent = isOpen ? '❌' : '💬';
 });
