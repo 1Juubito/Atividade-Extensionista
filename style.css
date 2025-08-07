@@ -454,6 +454,15 @@ body.tema-escuro section#dicas {
   overflow: hidden;
 }
 
+#chat-input {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px;
+  border-top: 1px solid #e0e0e0;
+  background-color: #f4f4f4;
+}
+
 #chat-header {
   background: #28a745;
   color: white;
@@ -489,17 +498,37 @@ body.tema-escuro section#dicas {
 
 #user-input {
   flex: 1;
-  border: none;
-  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 20px;
+  padding: 10px 15px;
   font-size: 14px;
+  outline: none;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+#user-input:focus {
+  border-color: var(--cor-principal);
+  box-shadow: 0 0 8px rgba(40, 167, 69, 0.4); 
 }
 
 #send-btn {
-  background: #28a745;
+  background-color: var(--cor-principal);
   color: white;
   border: none;
-  padding: 10px 15px;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
   cursor: pointer;
+  font-size: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  transition: background-color 0.3s ease;
+}
+
+#send-btn:hover {
+  background-color: #218838;
 }
 
 #chat-toggle {
