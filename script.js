@@ -164,7 +164,6 @@ async function botResponse(userText) {
     setTimeout(() => addMessage(finalResponse, 'bot'), 200);
 }
 
-// --- Event Listeners (Ouvintes de Ação) ---
 button.addEventListener('click', async () => {
     const text = input.value.trim();
     if (!text) return;
