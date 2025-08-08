@@ -67,7 +67,7 @@ export default async function handler(request, response) {
 
         const botText = data.candidates[0].content.parts[0].text;
 
-        await kv.set(cacheKey, botText, { ex: 3600 });
+        await kv.set(cacheKey, botText, { ex: 86400 });
         console.log(`Nova resposta salva no cache com TTL de 1 hora.`);
         
         return response.status(200).json({ reply: botText, fromCache: false });
