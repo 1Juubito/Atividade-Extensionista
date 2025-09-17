@@ -1,4 +1,7 @@
-import { kv } from '@vercel/kv';
+import { Redis } from '@upstash/redis';
+
+// Configuração do Redis usando a string de conexão completa
+const kv = Redis.fromEnv();
 
 async function callGeminiWithRetry(url, payload, maxRetries = 5) {
     let attempt = 0;
@@ -7,7 +10,6 @@ async function callGeminiWithRetry(url, payload, maxRetries = 5) {
         if (geminiResponse.ok) {
             return geminiResponse.json();
         }
-
         if (geminiResponse.status === 429 && attempt < maxRetries - 1) {
             attempt++;
             const delay = Math.pow(2, attempt) * 200 + Math.random() * 200;
@@ -31,7 +33,7 @@ export default async function handler(request, response) {
     if (!GEMINI_API_KEY) {
         return response.status(500).json({ error: 'A chave de API não está configurada no servidor.' });
     }
-
+    
     const cacheKey = `chat:${userMessage.toLowerCase().trim()}`;
 
     try {
@@ -42,9 +44,8 @@ export default async function handler(request, response) {
         }
 
         console.log(`CACHE MISS para a chave: ${cacheKey}`);
-
         const API_URL = `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${GEMINI_API_KEY}`;
-
+        
         const prompt = `
             Você é um assistente virtual de uma loja em Paranaguá. Seu nome é GeminiBot.
             As perguntas sobre horário, entrega, pagamento, localização e estacionamento já foram respondidas.
@@ -67,9 +68,9 @@ export default async function handler(request, response) {
 
         const botText = data.candidates[0].content.parts[0].text;
 
-        await kv.set(cacheKey, botText, { ex: 3600 }); // TTL de 1 hora
+        await kv.set(cacheKey, botText, { ex: 3600 });
         console.log(`Nova resposta salva no cache com TTL de 1 hora.`);
-
+        
         return response.status(200).json({ reply: botText, fromCache: false });
 
     } catch (error) {
