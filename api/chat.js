@@ -43,7 +43,7 @@ export default async function handler(request, response) {
 
         console.log(`CACHE MISS para a chave: ${cacheKey}`);
     
-        const API_URL = `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash-latest:generateContent?key=${GEMINI_API_KEY}`;
+        const API_URL = `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${GEMINI_API_KEY}`;
         
         const prompt = `
             Você é um assistente virtual de uma loja em Paranaguá. Seu nome é GeminiBot.
