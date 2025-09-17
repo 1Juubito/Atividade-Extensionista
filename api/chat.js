@@ -73,7 +73,7 @@ export default async function handler(request, response) {
         return response.status(200).json({ reply: botText, fromCache: false });
 
     } catch (error) {
-        console.error("Erro na função serverless:", error.message);
+        console.error("Erro na função serverless:", error);
         if (error.message.includes("429")) {
              return response.status(429).json({ error: 'Serviço sobrecarregado. Tente novamente em alguns instantes.' });
         }
