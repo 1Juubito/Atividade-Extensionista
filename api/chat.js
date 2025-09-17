@@ -1,8 +1,8 @@
 import { Redis } from '@upstash/redis';
 
 const kv = new Redis({
-  url: process.env.REDIS_URL,
-  token: process.env.REDIS_TOKEN,
+  url: process.env.KV_REST_API_URL,
+  token: process.env.KV_REST_API_TOKEN,
 });
 
 async function callGeminiWithRetry(url, payload, maxRetries = 5) {
