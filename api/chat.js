@@ -1,6 +1,5 @@
 import { Redis } from '@upstash/redis';
 
-// Configuração do Redis usando a string de conexão completa
 const kv = Redis.fromEnv();
 
 async function callGeminiWithRetry(url, payload, maxRetries = 5) {
@@ -68,8 +67,8 @@ export default async function handler(request, response) {
 
         const botText = data.candidates[0].content.parts[0].text;
 
-        await kv.set(cacheKey, botText, { ex: 3600 });
-        console.log(`Nova resposta salva no cache com TTL de 1 hora.`);
+        await kv.set(cacheKey, botText, { ex: 86400 });
+        console.log(`Nova resposta salva no cache com TTL de 24 horas.`);
         
         return response.status(200).json({ reply: botText, fromCache: false });
 
