@@ -1,9 +1,4 @@
-import { Redis } from '@upstash/redis';
-
-const kv = new Redis({
-  url: process.env.KV_REST_API_URL,
-  token: process.env.KV_REST_API_TOKEN,
-});
+import { kv } from '@vercel/kv';
 
 async function callGeminiWithRetry(url, payload, maxRetries = 5) {
     let attempt = 0;
