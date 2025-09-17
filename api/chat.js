@@ -4,7 +4,6 @@ const kv = new Redis({
   url: process.env.KV_REST_API_URL,
   token: process.env.KV_REST_API_TOKEN,
 });
-
 async function callGeminiWithRetry(url, payload, maxRetries = 5) {
     let attempt = 0;
     while (attempt < maxRetries) {
