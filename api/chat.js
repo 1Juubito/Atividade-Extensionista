@@ -1,4 +1,4 @@
-// api/chat.js
+
 import { Redis } from '@upstash/redis';
 
 const kv = Redis.fromEnv();
@@ -7,19 +7,17 @@ if (!GEMINI_API_KEY) {
   throw new Error('A chave GEMINI_API_KEY não está configurada no ambiente.');
 }
 
-// Preferência de modelos (ordem)
 const MODEL_PREFS = [
-  'gemini-2.5-flash',      // se tiver no seu projeto, use
-  'gemini-2.0-flash',      // estável e rápido
-  'gemini-1.5-flash'       // legacy / fallback
+  'gemini-2.5-flash',
+  'gemini-2.0-flash',
+  'gemini-1.5-flash'
 ];
 
 const MODELS_ENDPOINT = 'https://generativelanguage.googleapis.com/v1/models';
 const GENERATE_ENDPOINT_BASE = 'https://generativelanguage.googleapis.com/v1/models';
 
-// cache em memória (evita chamada a cada request)
 let inMemoryModelCache = { model: null, expiresAt: 0 };
-const MODEL_CACHE_TTL_SECONDS = 60 * 30; // 30 min
+const MODEL_CACHE_TTL_SECONDS = 60 * 30;
 
 async function listAvailableModels() {
   const url = `${MODELS_ENDPOINT}?key=${GEMINI_API_KEY}`;
@@ -29,7 +27,6 @@ async function listAvailableModels() {
     throw new Error(`Falha ao listar modelos: ${res.status} - ${body}`);
   }
   const data = await res.json();
-  // data.models é um array com { name: 'models/gemini-2.0-flash', ... }
   const names = (data.models || [])
     .map(m => (m.name || '').replace(/^models\//, ''))
     .filter(Boolean);
@@ -40,7 +37,6 @@ function selectBestModel(availableSet) {
   for (const pref of MODEL_PREFS) {
     if (availableSet.has(pref)) return pref;
   }
-  // como último recurso, tente qualquer gemini-2.*-flash ou gemini-1.5-flash-like
   const any20 = [...availableSet].find(n => /^gemini-2\.[\w-]*flash/i.test(n));
   if (any20) return any20;
   const any15 = [...availableSet].find(n => /^gemini-1\.5.*flash/i.test(n));
@@ -55,14 +51,12 @@ async function resolveModelWithCache() {
     return inMemoryModelCache.model;
   }
 
-  // tenta cache no Redis
   const cached = await kv.get('gemini:model:best');
   if (cached && cached.model && cached.expiresAt && cached.expiresAt > now) {
     inMemoryModelCache = cached;
     return cached.model;
   }
 
-  // descobre de verdade
   const available = await listAvailableModels();
   const chosen = selectBestModel(available);
   const expiresAt = now + MODEL_CACHE_TTL_SECONDS * 1000;
@@ -79,7 +73,6 @@ async function callGeminiWithRetry(url, payload, maxRetries = 5) {
     const res = await fetch(url, payload);
     if (res.ok) return res.json();
 
-    // 404: modelo pode ter sido aposentado → deixe o caller lidar com isso
     if (res.status === 404) {
       const body = await res.text();
       const err = new Error(`404_NOT_FOUND: ${body}`);
@@ -117,7 +110,6 @@ export default async function handler(request, response) {
 
     console.log(`CACHE MISS para a chave: ${cacheKey}`);
 
-    // 1) Resolve modelo com cache
     let model = await resolveModelWithCache();
 
     const prompt = `
@@ -131,7 +123,7 @@ Pergunta do usuário: "${userMessage}"
     const payload = {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      // Estrutura da v1: generateContent com contents/parts
+
       body: JSON.stringify({ contents: [{ parts: [{ text: prompt }] }] })
     };
 
@@ -141,10 +133,8 @@ Pergunta do usuário: "${userMessage}"
     try {
       data = await callGeminiWithRetry(url, payload);
     } catch (err) {
-      // Se o modelo “sumiu” (404), refaça a descoberta e tente de novo com o próximo
       if (err.status === 404) {
         console.warn(`Modelo ${model} indisponível (404). Redescobrindo...`);
-        // limpa caches para forçar nova resolução
         inMemoryModelCache = { model: null, expiresAt: 0 };
         await kv.del('gemini:model:best');
 
@@ -156,7 +146,6 @@ Pergunta do usuário: "${userMessage}"
       }
     }
 
-    // Validação de retorno
     const candidates = data?.candidates;
     const botText =
       candidates?.[0]?.content?.parts?.[0]?.text ??
